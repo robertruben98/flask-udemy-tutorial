@@ -9,7 +9,7 @@ def index():
 
 
 @app.route('/home', methods=['GET'], defaults={'name': 'Default'})
-@app.route('/home/<name>', methods=['GET'])
+@app.route('/home/<string:name>', methods=['GET'])
 def home(name):
     return f'<h1>Hello {name},you are on the home page!'
 
