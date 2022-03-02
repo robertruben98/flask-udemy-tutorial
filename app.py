@@ -32,7 +32,7 @@ def query():
 # Request Form Data
 @app.route('/theform')
 def theform():
-    return '''<form method="POST" action="/process"> 
+    return '''<form method="POST" action="/theform"> 
                 <input type="text" name="name">
                 <input type="text" name="location">
                 <input type="submit" value="Submit">
@@ -40,7 +40,8 @@ def theform():
                 '''
 
 
-@app.route('/process', methods=['POST'])
+# Incoming Request Method
+@app.route('/theform', methods=['POST'])
 def process():
     name = request.form['name']
     location = request.form['location']
