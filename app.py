@@ -8,17 +8,13 @@ def index():
     return '<h1>Hello stranger</h1>'
 
 
-@app.route('/home', methods=['GET'])
-def home():
-    return '<h1>You are on the home page!'
+@app.route('/home/<name>', methods=['GET'])
+def home(name):
+    return f'<h1>Hello {name},you are on the home page!'
 
 @app.route('/json')
 def json():
     return jsonify({'key': 'value', 'key2': [1,2,3,4]})
-
-@app.route('/<name>')
-def index_name(name):
-    return f'<h1>Hello {name}!</h1>'
 
 
 if __name__ == '__main__':
