@@ -8,7 +8,7 @@ def index():
     return '<h1>Hello stranger</h1>'
 
 
-@app.route('/home')
+@app.route('/home', methods=['GET'])
 def home():
     return '<h1>You are on the home page!'
 
