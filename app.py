@@ -29,5 +29,24 @@ def query():
     return f'<h1>Hi {name}. You are from {location}. You are on the query page</h1>'
 
 
+# Request Form Data
+@app.route('/theform')
+def theform():
+    return '''<form method="POST" action="/process"> 
+                <input type="text" name="name">
+                <input type="text" name="location">
+                <input type="submit" value="Submit">
+              </form>
+                '''
+
+
+@app.route('/process', methods=['POST'])
+def process():
+    name = request.form['name']
+    location = request.form['location']
+
+    return f'<h1>Hello {name}. You are from {location}. You have submitted the form successfully!</h1>'
+
+
 if __name__ == '__main__':
     app.run(debug=True)
