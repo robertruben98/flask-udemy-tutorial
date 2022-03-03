@@ -16,7 +16,7 @@ def index():
 @app.route('/home/<string:name>', methods=['GET'])
 def home(name):
     session['name'] = name
-    return render_template('home.html', name=name, display=False)
+    return render_template('home.html', name=name, display=False, mylist=['one', 'two', 'three', 'four'], listofdictionaries=[{'name' : 'Zach'}, {'name' : 'Zoe'}])
 
 
 @app.route('/json')
