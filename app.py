@@ -1,11 +1,13 @@
-from flask import Flask, jsonify, request, url_for, redirect
+from flask import Flask, jsonify, request, url_for, redirect, session
 
 app = Flask(__name__)
 
 app.config['DEBUG'] = True
+app.config['SECRET_KEY'] = 'Thisisasecret!'
 
 @app.route('/')
 def index():
+    session.pop('name', None)
     return '<h1>Hello stranger</h1>'
 
 
@@ -13,12 +15,17 @@ def index():
 @app.route('/home', methods=['GET'], defaults={'name': 'Default'})
 @app.route('/home/<string:name>', methods=['GET'])
 def home(name):
+    session['name'] = name
     return f'<h1>Hello {name},you are on the home page!'
 
 
 @app.route('/json')
 def json():
-    return jsonify({'key': 'value', 'key2': [1, 2, 3, 4]})
+    if 'name' in session:
+        name = session['name']
+    else:
+        name = 'NotinSession!'
+    return jsonify({'key': 'value', 'key2': [1, 2, 3, 4], 'name': name})
 
 
 # Request query String
