@@ -5,6 +5,7 @@ app = Flask(__name__)
 app.config['DEBUG'] = True
 app.config['SECRET_KEY'] = 'Thisisasecret!'
 
+
 @app.route('/')
 def index():
     session.pop('name', None)
@@ -16,7 +17,8 @@ def index():
 @app.route('/home/<string:name>', methods=['GET'])
 def home(name):
     session['name'] = name
-    return render_template('home.html', name=name, display=False, mylist=['one', 'two', 'three', 'four'], listofdictionaries=[{'name' : 'Zach'}, {'name' : 'Zoe'}])
+    return render_template('home.html', name=name, display=False, mylist=['one', 'two', 'three', 'four'],
+                           listofdictionaries=[{'name': 'Zach'}, {'name': 'Zoe'}])
 
 
 @app.route('/json')
@@ -49,7 +51,7 @@ def process():
     name = request.form['name']
     location = request.form['location']
 
-    #return f'<h1>Hello {name}. You are from {location}. You have submitted the form successfully!</h1>'
+    # return f'<h1>Hello {name}. You are from {location}. You have submitted the form successfully!</h1>'
     return redirect(url_for('home', name=name, location=location))
 
 
