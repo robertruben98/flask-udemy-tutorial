@@ -16,7 +16,7 @@ def index():
 @app.route('/home/<string:name>', methods=['GET'])
 def home(name):
     session['name'] = name
-    return f'<h1>Hello {name},you are on the home page!'
+    return render_template('home.html', name=name)
 
 
 @app.route('/json')
