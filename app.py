@@ -36,8 +36,12 @@ def index():
 @app.route('/home/<string:name>', methods=['GET'])
 def home(name):
     session['name'] = name
+    db = get_db()
+    cur = db.execute('select id, name, location from users')
+    results = cur.fetchall()
+
     return render_template('home.html', name=name, display=False, mylist=['one', 'two', 'three', 'four'],
-                           listofdictionaries=[{'name': 'Zach'}, {'name': 'Zoe'}])
+                           listofdictionaries=[{'name': 'Zach'}, {'name': 'Zoe'}], results=results)
 
 
 @app.route('/json')
