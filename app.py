@@ -70,6 +70,10 @@ def process():
     name = request.form['name']
     location = request.form['location']
 
+    db = get_db()
+    db.execute('insert into users (name, location) values(?, ?)', [name, location])
+    db.commit()
+
     # return f'<h1>Hello {name}. You are from {location}. You have submitted the form successfully!</h1>'
     return redirect(url_for('home', name=name, location=location))
 
